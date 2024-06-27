@@ -36,22 +36,6 @@
     {
       "path": "assets/fonts/NotoSans-SemiBold.ttf",
       "sha1": "44bd4f1602342642f6bbfc019cca65852d9f3ee0"
-    },
-    {
-      "path": "assets/image/bg_layout.png",
-      "sha1": "75fb127596efa56e191713a5fc60144e06041eb9"
-    },
-    {
-      "path": "assets/image/dropdown.png",
-      "sha1": "552b557f1b742b3a2ee88d243b4ce09daec45b7b"
-    },
-    {
-      "path": "assets/image/flag.png",
-      "sha1": "0bb6355e30dcfd4287b17248ba6861da5ef92658"
-    },
-    {
-      "path": "assets/image/register_Banner.png",
-      "sha1": "cb908abda05c12a1a0c142609006ce02e3a1a997"
     }
   ]
 }

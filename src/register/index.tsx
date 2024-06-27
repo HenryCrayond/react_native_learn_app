@@ -26,7 +26,7 @@ const RegisterScreen = () => {
     const handleFocusInput = (key: string) => {
         setIsFocused(key)
     }
-    
+
     const handleFocuLeave = () => {
         setIsFocused('')
     }
@@ -41,8 +41,8 @@ const RegisterScreen = () => {
                     </View>
 
                     <View style={styles.formContainer}>
-                        <Text style={styles.bannerText}>Profile details</Text>
-                        <Text style={styles.subText}>Please provide your basic details to proceed further</Text>
+                        <Text style={{ ...styles.bannerText, fontSize: 16 }}>Profile details</Text>
+                        <Text style={{ ...styles.subText, width: 224 }}>Please provide your basic details to proceed further</Text>
 
                         <View style={{ ...styles.inputRoot, marginTop: 20 }}>
                             <TextInput
@@ -61,7 +61,7 @@ const RegisterScreen = () => {
 
                         <View style={{ ...styles.inputRoot, marginTop: 4, backgroundColor: "#E6EAEB", borderColor: "#ffff", padding: 10, height: 62, borderRadius: 8 }}>
                             <View style={styles.mobileInputRoot}>
-                                <View style={styles.dropdown}><Image source={Flag} /><Text style={{...styles.bannerText,marginTop:0}}>+966</Text><Image source={DropDown} /></View>
+                                <View style={styles.dropdown}><Image source={Flag} /><Text style={{ ...styles.subText, color: "#02111A" }}>+966</Text><Image source={DropDown} /></View>
                                 <View style={styles.verticleLine}></View>
                                 <View style={{ ...styles.inputRoot, marginTop: 14 }}>
                                     <TextInput
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     bannerText: {
         fontSize: 14,
         fontWeight: '600',
-        fontFamily:"NotoSans-Italic",
+        fontFamily: "NotoSans-Bold",
         lineHeight: 20,
         color: "#02111A",
         marginTop: 12,
@@ -149,11 +149,10 @@ const styles = StyleSheet.create({
     subText: {
         fontSize: 14,
         fontWeight: '400',
-        fontFamily:"NotoSans",
+        fontFamily: "NotoSans-Regular",
         lineHeight: 20,
         color: "#4E585E",
         marginTop: 12,
-        width: 214,
         marginBottom: 10,
         textAlign: "center"
     },
@@ -204,6 +203,7 @@ const styles = StyleSheet.create({
     inputLabel: {
         fontSize: 12,
         fontWeight: '400',
+        fontFamily: 'NotoSans-Regular',
         lineHeight: 16,
         color: "#4E585E",
         top: -26,
@@ -221,8 +221,9 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderColor: "#D9DBDD",
         paddingLeft: 16,
-        color: "#02111A"
-
+        color: "#02111A",
+        fontSize: 14,
+        fontFamily: "NotoSans-Regular"
     },
 
     btnStyle: {
