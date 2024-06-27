@@ -1,22 +1,34 @@
 import { useState } from "react";
-import { Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
-import LayoutImg from '../../assets/bg_layout.png';
-import DropDown from '../../assets/dropdown.png';
-import Flag from '../../assets/flag.png';
-import BannerImg from '../../assets/register_Banner.png';
+import { Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native";
+import LayoutImg from '../../assets/image/bg_layout.png';
+import DropDown from '../../assets/image/dropdown.png';
+import Flag from '../../assets/image/flag.png';
+import BannerImg from '../../assets/image/register_Banner.png';
 
 
 const RegisterScreen = () => {
 
     const [isFocused, setIsFocused] = useState('');
+    const [formValue, setFormValues] = useState({
+        name: "",
+        mobile: "",
+        email: "",
+        address: ""
+    });
 
-    const handleFocusInput = (key:string) => {
-        setIsFocused(key)
-        console.log('is focus');
+    const handeChangeText = (e: string, key: string) => {
+        setFormValues((prev) => ({
+            ...prev,
+            [key]: e
+        }))
     }
+
+    const handleFocusInput = (key: string) => {
+        setIsFocused(key)
+    }
+    
     const handleFocuLeave = () => {
         setIsFocused('')
-        console.log('is leave');
     }
 
     return (
@@ -25,31 +37,43 @@ const RegisterScreen = () => {
                 <View style={styles.container}>
                     <View style={styles.bannerContainer}>
                         <Image source={BannerImg} />
-                        <Text style={styles.bannerText}>Earn loyalty for every purchase</Text>
+                        <Text style={{ ...styles.bannerText, width: 180 }}>Earn loyalty for every purchase</Text>
                     </View>
 
                     <View style={styles.formContainer}>
                         <Text style={styles.bannerText}>Profile details</Text>
                         <Text style={styles.subText}>Please provide your basic details to proceed further</Text>
-                        
-                        <View style={{...styles.inputRoot,marginTop:20}}>
-                            <TextInput style={styles.inputStyle} onFocus={(e)=>handleFocusInput('name')} onSubmitEditing={handleFocuLeave} />
-                            <Text style={{
-                                ...styles.inputLabel,
-                                transform: isFocused ==='name' ? "translateY(-30px)" : "translateY(-12px)",
-                                transformOrigin: "transform 0.3s ease"
-                            }}>Name</Text>
+
+                        <View style={{ ...styles.inputRoot, marginTop: 20 }}>
+                            <TextInput
+                                style={styles.inputStyle}
+                                onChangeText={(e) => handeChangeText(e, 'name')}
+                                onFocus={(e) => handleFocusInput('name')}
+                                onSubmitEditing={handleFocuLeave}
+                            />
+                            <Text
+                                style={{
+                                    ...styles.inputLabel,
+                                    transform: isFocused === 'name' || formValue?.name ? "translateY(-30px)" : "translateY(-12px)",
+                                    transformOrigin: "transform 0.3s ease"
+                                }}>Name</Text>
                         </View>
-                        
-                        <View style={{ ...styles.inputRoot,marginTop:6, backgroundColor: "#E6EAEB", borderColor: "#ffff", padding: 10, height: 62,borderRadius:8 }}>
+
+                        <View style={{ ...styles.inputRoot, marginTop: 4, backgroundColor: "#E6EAEB", borderColor: "#ffff", padding: 10, height: 62, borderRadius: 8 }}>
                             <View style={styles.mobileInputRoot}>
-                                <View style={styles.dropdown}><Image source={Flag} /><Text>+966</Text><Image source={DropDown} /></View>
+                                <View style={styles.dropdown}><Image source={Flag} /><Text style={{...styles.bannerText,marginTop:0}}>+966</Text><Image source={DropDown} /></View>
                                 <View style={styles.verticleLine}></View>
-                                <View style={{...styles.inputRoot,marginTop:14}}>
-                                    <TextInput style={{...styles.inputStyle,width:'78%',borderColor:"#E6EAEB"}} keyboardType={'phone-pad'} onFocus={()=>handleFocusInput('mobile')} onSubmitEditing={handleFocuLeave} />
+                                <View style={{ ...styles.inputRoot, marginTop: 14 }}>
+                                    <TextInput
+                                        style={{ ...styles.inputStyle, width: '78%', borderColor: "#E6EAEB" }}
+                                        keyboardType={'phone-pad'}
+                                        onFocus={() => handleFocusInput('mobile')}
+                                        onSubmitEditing={handleFocuLeave}
+                                        onChangeText={(e) => handeChangeText(e, 'mobile')}
+                                    />
                                     <Text style={{
                                         ...styles.inputLabel,
-                                        transform: isFocused ==='mobile' ? "translateY(-30px)" : "translateY(-14px)",
+                                        transform: isFocused === 'mobile' || formValue.mobile ? "translateY(-30px)" : "translateY(-14px)",
                                         transformOrigin: "transform 0.3s ease"
                                     }}>Mobile</Text>
                                 </View>
@@ -57,29 +81,39 @@ const RegisterScreen = () => {
                             </View>
                         </View>
 
-                        <View style={{...styles.inputRoot,marginTop:16}}>
-                            <TextInput style={styles.inputStyle} onFocus={()=>handleFocusInput('email')} onSubmitEditing={handleFocuLeave} />
+                        <View style={{ ...styles.inputRoot, marginTop: 16 }}>
+                            <TextInput
+                                style={styles.inputStyle}
+                                onFocus={() => handleFocusInput('email')}
+                                onSubmitEditing={handleFocuLeave}
+                                onChangeText={(e) => handeChangeText(e, 'email')}
+                            />
                             <Text style={{
                                 ...styles.inputLabel,
-                                transform: isFocused ==='email' ? "translateY(-30px)" : "translateY(-12px)",
+                                transform: isFocused === 'email' || formValue.email ? "translateY(-30px)" : "translateY(-12px)",
                                 transformOrigin: "transform 0.3s ease"
                             }}>Email</Text>
                         </View>
 
-                        <View style={{...styles.inputRoot,marginTop:10 ,marginBottom:8}}>
-                            <TextInput style={{ ...styles.inputStyle, height: 110 }} onFocus={()=>handleFocusInput('address')} onSubmitEditing={handleFocuLeave} />
+                        <View style={{ ...styles.inputRoot, marginTop: 6, marginBottom: 14 }}>
+                            <TextInput
+                                style={{ ...styles.inputStyle, height: 110 }}
+                                onFocus={() => handleFocusInput('address')}
+                                onSubmitEditing={handleFocuLeave}
+                                onChangeText={(e) => handeChangeText(e, 'address')}
+                            />
                             <Text
                                 style={{
                                     ...styles.inputLabel,
                                     top: -75,
-                                    transform: isFocused ==='address' ? "translateY(-14px)" : "translateY(-10px)",
+                                    transform: isFocused === 'address' || formValue.address ? "translateY(-14px)" : "translateY(-10px)",
                                     transformOrigin: "transform 0.3s ease"
                                 }}>Address</Text>
                         </View>
 
-                        <View style={styles.btnStyle}>
+                        <TouchableHighlight touchSoundDisabled={false} style={styles.btnStyle}>
                             <Text style={styles.btnText}>Register</Text>
-                        </View>
+                        </TouchableHighlight>
                     </View>
                 </View>
             </ScrollView>
@@ -105,16 +139,17 @@ const styles = StyleSheet.create({
     bannerText: {
         fontSize: 14,
         fontWeight: '600',
+        fontFamily:"NotoSans-Italic",
         lineHeight: 20,
         color: "#02111A",
         marginTop: 12,
-        width: 180,
         textAlign: "center"
     },
 
     subText: {
         fontSize: 14,
         fontWeight: '400',
+        fontFamily:"NotoSans",
         lineHeight: 20,
         color: "#4E585E",
         marginTop: 12,
@@ -185,7 +220,9 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderRadius: 8,
         borderColor: "#D9DBDD",
-        paddingLeft:16
+        paddingLeft: 16,
+        color: "#02111A"
+
     },
 
     btnStyle: {
@@ -199,7 +236,7 @@ const styles = StyleSheet.create({
         height: 48,
         paddingLeft: 16,
         paddingRight: 16,
-        paddingTop: 10,
+        paddingTop: 14,
         paddingBottom: 10,
         bottom: 10
     },
