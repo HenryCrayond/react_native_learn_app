@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native";
+import { Alert, Button, Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native";
 import LayoutImg from '../../assets/image/bg_layout.png';
 import DropDown from '../../assets/image/dropdown.png';
 import Flag from '../../assets/image/flag.png';
@@ -30,6 +30,23 @@ const RegisterScreen = () => {
     const handleFocuLeave = () => {
         setIsFocused('')
     }
+
+    const handlepress = () => Alert.alert(
+        'Register Succesfuly',
+         `
+           Name:${formValue.name}
+           Mobile:${formValue.mobile}
+           Email:${formValue.email}
+           Address:${formValue.address} 
+         `,
+        [
+            {
+                text: 'Ok',
+                onPress: () => undefined,
+                style: 'cancel',
+            },
+        ],
+    );
 
     return (
         <ImageBackground source={LayoutImg} resizeMode="stretch" style={styles.image} >
@@ -111,7 +128,7 @@ const RegisterScreen = () => {
                                 }}>Address</Text>
                         </View>
 
-                        <TouchableHighlight touchSoundDisabled={false} style={styles.btnStyle}>
+                        <TouchableHighlight touchSoundDisabled={false} style={styles.btnStyle} onPress={handlepress}>
                             <Text style={styles.btnText}>Register</Text>
                         </TouchableHighlight>
                     </View>
