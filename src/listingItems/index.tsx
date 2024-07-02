@@ -233,7 +233,6 @@ const ListingItems = () => {
                     <Image source={LeftArrow} style={{ height: 20, width: 26 }} />
                     <PageHeadingText>Merchant Deatil</PageHeadingText>
                 </RowDireection>
-
                 <LocationView>
                     <Image source={{ uri: Henry }} style={{ height: 60, width: 60, borderRadius: 8 }} />
                     <View>
@@ -244,22 +243,25 @@ const ListingItems = () => {
                         </RowDireection>
                     </View>
                 </LocationView>
-
-                <CenterView style={{ flexDirection: "row", marginTop: 20 }}>
+                <View style={{ ...styles.hairline, marginTop: 14 }}></View>
+                <CenterView style={{ flexDirection: "row", marginTop: 18 }}>
                     {
-                        Ratings?.map((items, i) => (
-                            <View key={i}>
-                                <RowDireection>
-                                    <Image source={items.icon} style={{ height: 20, width: 14 }} />
-                                    <PageHeadingText style={{ fontSize: 20, marginLeft: -6 }}>{items?.title}</PageHeadingText>
-                                </RowDireection>
-                                <SubTitle style={{ marginTop: 10 }}>{items?.label}</SubTitle>
-                            </View>
+                        Ratings?.map((items, i,{length}) => (
+                            <>
+                                <View key={i}>
+                                    <RowDireection>
+                                        <Image source={items.icon} style={{ height: 20, width: 16 }} />
+                                        <PageHeadingText style={{ fontSize: 20, marginLeft: -6 }}>{items?.title}</PageHeadingText>
+                                    </RowDireection>
+                                    <SubTitle style={{ marginTop: 10 }}>{items?.label}</SubTitle>
+                                </View>
+                               {length !== i+1 &&  <View style={{...styles.vartiline}}></View>}
+                            </>
                         ))
                     }
                 </CenterView>
-
-                <RowDireection style={{ gap: 6, marginTop: 28 }}>
+                <View style={{ ...styles.hairline, marginTop: 14 }}></View>
+                <RowDireection style={{ gap: 6, marginTop: 20 }}>
                     <ChipView style={{ backgroundColor: "" }}>
                         <SubTitle style={{ color: "" }}>All</SubTitle>
                     </ChipView>
@@ -317,6 +319,12 @@ const styles = StyleSheet.create({
         height: .5,
         width: '100%',
         marginTop: 3
+    },
+    vartiline: {
+        backgroundColor: '#D9DBDD',
+        width:1,
+        height: '100%',
+        marginHorizontal:10
     },
 });
 
