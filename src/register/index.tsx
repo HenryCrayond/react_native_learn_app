@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Alert, Button, Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native";
-import LayoutImg from '../../assets/image/bg_layout.png';
+import { Alert, Image, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native";
 import DropDown from '../../assets/image/dropdown.png';
 import Flag from '../../assets/image/flag.png';
 import BannerImg from '../../assets/image/register_Banner.png';
@@ -49,7 +48,6 @@ const RegisterScreen = () => {
     );
 
     return (
-        <ImageBackground source={LayoutImg} resizeMode="stretch" style={styles.image} >
             <ScrollView style={{ flex: 1, width: "100%" }}>
                 <View style={styles.container}>
                     <View style={styles.bannerContainer}>
@@ -134,7 +132,6 @@ const RegisterScreen = () => {
                     </View>
                 </View>
             </ScrollView>
-        </ImageBackground>
     )
 }
 
@@ -264,12 +261,6 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         lineHeight: 20,
         color: "#ffff",
-    },
-
-    image: {
-        flex: 1,
-        zIndex: 1,
-        justifyContent: 'center',
     },
 })
 export default RegisterScreen

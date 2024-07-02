@@ -10,13 +10,14 @@ import {
   SafeAreaView,
   StyleSheet
 } from 'react-native';
-import RegisterScreen from './src/register';
+import ListingItems from './src/listingItems';
 
 function App(): React.JSX.Element {
 
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <RegisterScreen />
+      {/* <RegisterScreen /> */}
+      <ListingItems />
     </SafeAreaView>
   );
 }
@@ -24,7 +25,7 @@ function App(): React.JSX.Element {
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    backgroundColor: "#D6EFE7",
+    backgroundColor: "#EFF3F6",
   },
 })
 
