@@ -10,14 +10,13 @@ import {
   SafeAreaView,
   StyleSheet
 } from 'react-native';
-import ListingItems from './src/listingItems';
 
 function App(): React.JSX.Element {
 
   return (
     <SafeAreaView style={styles.rootContainer}>
       {/* <RegisterScreen /> */}
-      <ListingItems />
+      {/* <ListingItems /> */}
     </SafeAreaView>
   );
 }

@@ -300,7 +300,7 @@ const ListingItems = () => {
 
     const handleIncrease = (id: string) => {
         const addCount = listMenu.map((val: any) => {
-            val.id == id ? val.count = val.count + 1 : val.count
+            val.id == id ?  val.count = val.count + 1 : val.count
             return val;
         })
         setListMenu(addCount)
