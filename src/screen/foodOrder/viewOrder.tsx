@@ -3,7 +3,7 @@ import { Image, StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'react-native-linear-gradient';
 import styled from 'styled-components/native';
 import Heart from '../../../assets/image/heart-black.png';
-import imgaes from '../../../assets/image/img_1.png';
+import imgaes from '../../../assets/image/biriyani.png';
 import Arrow from '../../../assets/image/left-arrow-svgr.png';
 import Minus from '../../../assets/image/minus-a.png';
 import Plus from '../../../assets/image/plus-a.png';
