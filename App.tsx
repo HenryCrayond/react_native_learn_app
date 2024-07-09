@@ -1,31 +1,11 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet
-} from 'react-native';
+import Auth from './src/auth';
+import 'react-native-gesture-handler';
 
 function App(): React.JSX.Element {
-
   return (
-    <SafeAreaView style={styles.rootContainer}>
-      {/* <RegisterScreen /> */}
-      {/* <ListingItems /> */}
-    </SafeAreaView>
+    <Auth />
   );
 }
-
-const styles = StyleSheet.create({
-  rootContainer: {
-    flex: 1,
-    backgroundColor: "#EFF3F6",
-  },
-})
 
 export default App;

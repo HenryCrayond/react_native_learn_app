@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { FlatList, Image, Pressable, StatusBar, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
-import LeftArrow from '../../assets/image/left-arrow.png';
-import PinLocation from '../../assets/image/location-pin.png';
-import Locaton from '../../assets/image/location.png';
-import Conduct from '../../assets/image/profile.png';
-import Start from '../../assets/image/star-svg.png';
-import Leg from '../../assets/image/leg.png';
-import menu1 from '../../assets/image/menu_1.png';
-import menu2 from '../../assets/image/menu_2.png';
-import menu3 from '../../assets/image/menu_3.png';
-import menu4 from '../../assets/image/menu_4.png';
-import Increase from '../../assets/image/plus-circle.png';
-import Decreacse from '../../assets/image/minus-circle.png';
-import arrow1 from '../../assets/image/arrow-right-1.png';
-import arrow2 from '../../assets/image/arrow-right-2.png';
-import Decreacse0 from '../../assets/image/minus-circle-0.png';
+import LeftArrow from '../../../assets/image/left-arrow.png';
+import PinLocation from '../../../assets/image/location-pin.png';
+import Locaton from '../../../assets/image/location.png';
+import Conduct from '../../../assets/image/profile.png';
+import Start from '../../../assets/image/star-svg.png';
+import Leg from '../../../assets/image/leg.png';
+import menu1 from '../../../assets/image/menu_1.png';
+import menu2 from '../../../assets/image/menu_2.png';
+import menu3 from '../../../assets/image/menu_3.png';
+import menu4 from '../../../assets/image/menu_4.png';
+import Increase from '../../../assets/image/plus-circle.png';
+import Decreacse from '../../../assets/image/minus-circle.png';
+import arrow1 from '../../../assets/image/arrow-right-1.png';
+import arrow2 from '../../../assets/image/arrow-right-2.png';
+import Decreacse0 from '../../../assets/image/minus-circle-0.png';
 
 
 
@@ -277,7 +277,7 @@ const ListMenuItem = ({ dishName, icon, items, count, price, handleIncrease, han
     </MenuCardtView>
 );
 
-const ListingItems = () => {
+const ListingItems = ({navigation}) => {
     const [selectItem, setSelectitem] = useState(['Combo'])
     const [listMenu, setListMenu] = useState<any>(MenuData)
 
@@ -321,7 +321,9 @@ const ListingItems = () => {
             <StatusBar animated={true} backgroundColor="#fff" barStyle={'dark-content'} />
             <CardTopView>
                 <RowDireection>
+                    <Pressable onPress={()=>navigation.goBack()}>
                     <Image source={LeftArrow} style={{ height: 20, width: 26 }} />
+                    </Pressable>
                     <PageHeadingText>Merchant Deatil</PageHeadingText>
                 </RowDireection>
                 <LocationView>
