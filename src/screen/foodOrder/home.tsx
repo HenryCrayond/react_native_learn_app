@@ -12,7 +12,7 @@ import menu3 from '../../../assets/image/menu_3.png';
 import menu4 from '../../../assets/image/menu_4.png';
 import Star from '../../../assets/image/ratings.png';
 import LinearGradient from 'react-native-linear-gradient';
-
+import { DrawerActions } from '@react-navigation/native';
 const profile = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsynwv-5qtogtOwJbIjaPFJUmHpzhxgqIAug&s"
 
 const HomeContainer = styled.View`
@@ -164,7 +164,7 @@ const HomeScreen = ({ navigation }: any) => {
   }
 
   const handleSelectMenu = () => {
-    navigation.navigate('ViewOrder')
+    navigation.navigate('ViewOrder')  
   }
   return (
     <LinearGradient
@@ -181,7 +181,7 @@ const HomeScreen = ({ navigation }: any) => {
             <TopText>Canada</TopText>
             <Image source={Drop} style={{ height: 12, width: 20, borderRadius: 50 }} />
           </RowsContainer>
-          <SideDrower onPress={() => navigation.openDrawer()}>
+          <SideDrower onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
             <Image source={MenuAlt} style={{ height: 20, width: 20, borderRadius: 50 }} />
           </SideDrower>
         </NavContainer>

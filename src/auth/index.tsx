@@ -1,24 +1,26 @@
-import { NavigationContainer } from '@react-navigation/native';
-// import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import Advertisement from '../screen/foodOrder/advertisement';
-import HomeScreen from '../screen/foodOrder/home';
-import ViewOrder from '../screen/foodOrder/viewOrder';
-import Test from '../screen/foodOrder/test';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-import ActiveHome from '../../assets/image/home-active.png';
-import InActiveHome from '../../assets/image/home-inActive.png';
-import ActiveHeart from '../../assets/image/hear-active.png';
-import InActiveHeart from '../../assets/image/heart-inActive.png';
-import ActiveNotify from '../../assets/image/notification-active.png';
-import InActiveNotify from '../../assets/image/notification-incactive.png';
+import Advertisement from '../screen/foodOrder/advertisement';
+import HomeScreen from '../screen/foodOrder/home';
+
 import ActiveDelete from '../../assets/image/delete-active.png';
 import InActiveDelete from '../../assets/image/delete-Inactive.png';
+import ActiveHeart from '../../assets/image/hear-active.png';
+import InActiveHeart from '../../assets/image/heart-inActive.png';
+import ActiveHome from '../../assets/image/home-active.png';
+import InActiveHome from '../../assets/image/home-inActive.png';
+import ActiveNotify from '../../assets/image/notification-active.png';
+import InActiveNotify from '../../assets/image/notification-incactive.png';
+import notfound from '../../assets/image/register_Banner.png';
+
+import ProfileComponet from '../screen/foodOrder/profile';
+import ViewOrder from '../screen/foodOrder/viewOrder';
+import { Life } from '../screen/foodOrder/helperComponets';
 
 
 const IconsCompoent = ({ bgColor, icons }: any) => {
@@ -28,96 +30,68 @@ const IconsCompoent = ({ bgColor, icons }: any) => {
         </View>
     )
 }
+
 const Auth = () => {
-    // const Drawer = createDrawerNavigator();
+
     const Stack = createNativeStackNavigator();
     const Tab = createBottomTabNavigator();
+    const Drawer = createDrawerNavigator();
+
 
     const TabHomeScreen = () => {
         return (
-            <Tab.Navigator
-                initialRouteName="a"
+            <Tab.Navigator initialRouteName='Home'
                 screenOptions={{
                     tabBarShowLabel: false,
                     tabBarStyle: styles.bottonDrowerContiner,
-                }}
-            >
-                <Tab.Screen
-                    name="a"
-                    component={HomeScreen}
+                }}>
+                <Tab.Screen name='Home' component={HomeScreen}
                     options={{
                         headerShown: false,
-                        tabBarIcon: ({ focused }) => (
-                            <IconsCompoent
-                                icons={focused ? ActiveHome : InActiveHome}
-                                bgColor={focused ? '#ED714D' : '#ffff'}
-                            />
-                        ),
+                        tabBarIcon: ({ focused }) => (<IconsCompoent icons={focused ? ActiveHome : InActiveHome} bgColor={focused ? '#ED714D' : '#ffff'} />)
                     }}
                 />
-                <Tab.Screen
-                    name="b"
-                    component={HomeScreen}
-                    options={{
-                        headerShown: false,
-                        tabBarIcon: ({ focused }) => (
-                            <IconsCompoent
-                                icons={focused ? ActiveHeart : InActiveHeart}
-                                bgColor={focused ? '#ED714D' : '#ffff'}
-                            />
-                        ),
-                    }}
-                />
-                <Tab.Screen
-                    name="d"
-                    component={HomeScreen}
-                    options={{
-                        headerShown: false,
-                        tabBarIcon: ({ focused }) => (
-                            <IconsCompoent
-                                icons={focused ? ActiveDelete : InActiveDelete}
-                                bgColor={focused ? '#ED714D' : '#ffff'}
-                            />
-                        ),
-                    }}
-                />
-                <Tab.Screen
-                    name="c"
-                    component={Test}
-                    options={{
-                        headerShown: false,
-                        tabBarIcon: ({ focused }) => (
-                            <IconsCompoent
-                                icons={focused ? ActiveNotify : InActiveNotify}
-                                bgColor={focused ? '#ED714D' : '#ffff'}
-                            />
-                        ),
-                    }}
-                />
+                <Tab.Screen name='life' component={() => <Life icon={notfound} label={'Life Screen'} />} options={{
+                    headerShown: false,
+                    tabBarIcon: ({ focused }) => (<IconsCompoent icons={focused ? ActiveHeart : InActiveHeart} bgColor={focused ? '#ED714D' : '#ffff'} />)
+                }} />
+                <Tab.Screen name='delete' component={() => <Life icon={notfound} label={'Delete Screen'}/>} options={{
+                    headerShown: false,
+                    tabBarIcon: ({ focused }) => (<IconsCompoent icons={focused ? ActiveDelete : InActiveDelete} bgColor={focused ? '#ED714D' : '#ffff'} />)
+                }} />
+                <Tab.Screen name='notify' component={() => <Life icon={notfound} label={'Notification Screen'} />} options={{
+                    headerShown: false,
+                    tabBarIcon: ({ focused }) => (<IconsCompoent icons={focused ? ActiveNotify : InActiveNotify} bgColor={focused ? '#ED714D' : '#ffff'} />)
+                }} />
             </Tab.Navigator>
-        );
-    };
+        )
+    }
 
-    const StackNavigator = () => {
+    const MyDrawer = () => {
+        return (
+            <Drawer.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}
+                drawerContent={props => <ProfileComponet />}
+            >
+                <Drawer.Screen name="Home" component={TabHomeScreen} />
+            </Drawer.Navigator>
+        );
+    }
+
+    const StackNavigation = () => {
         return (
             <Stack.Navigator initialRouteName="Welcome">
-                <Stack.Screen name="Welcome" component={Advertisement} options={{ headerShown: false }} />
-                <Stack.Screen name="Home" component={TabHomeScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="ViewOrder" component={ViewOrder} options={{ headerShown: false }} />
+                <Stack.Screen name='Welcome' component={Advertisement} options={{ headerShown: false }} />
+                <Stack.Screen name='Home' component={MyDrawer} options={{ headerShown: false }} />
+                <Stack.Screen name='ViewOrder' component={ViewOrder} options={{ headerShown: false }} />
             </Stack.Navigator>
-        );
-    };
+        )
+    }
 
     return (
-        <NavigationContainer>
-            {/* <Drawer.Navigator initialRouteName='Cantact'>
-                <Drawer.Screen name="Home" component={StackNavigator} />
-                <Drawer.Screen name="Contact" component={ViewOrder} />
-            </Drawer.Navigator> */}
-            <StackNavigator/>
-        </NavigationContainer>
-    );
-};
+        <StackNavigation />
+    )
+}
+
 const styles = StyleSheet.create({
     bottonDrowerContiner: {
         backgroundColor: '#ffff',
@@ -140,7 +114,30 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         height: 50,
         width: 50,
-    }
+    },
+
+    profileContainer: {
+        padding: 14,
+        display: "flex",
+        flexDirection: "row",
+        gap: 10
+    },
+
+    title: {
+        fontSize: 14,
+        fontWeight: '600',
+        lineHeight: 20,
+        color: "#02111A",
+        textAlign: "center"
+    },
+
+    hairline: {
+        backgroundColor: '#D9DBDD',
+        height: 1,
+        width: '100%',
+        marginTop: 3
+    },
+
 });
 
 
